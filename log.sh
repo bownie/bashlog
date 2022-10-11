@@ -68,7 +68,7 @@ function log() {
       local syslog_line="${upper}: ${line}";
 
       logger \
-        --id="${pid}" \
+        -i "${pid}" \
         -t "${tag}" \
         -p "${facility}.${severity}" \
         "${syslog_line}" \
