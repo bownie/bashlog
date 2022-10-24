@@ -19,7 +19,7 @@ function log() {
 
   date="$(date "${date_format}")";
   date_s="$(date "+%s")";
-  
+
   local file="${BASHLOG_FILE:-0}";
   local file_path="${BASHLOG_FILE_PATH:-/tmp/$(basename "${0}").log}";
 
@@ -32,12 +32,13 @@ function log() {
   local pid="${$}";
 
   local level="${1}";
-  local upper="$(echo "${level}" | awk '{print toupper($0)}')";
+  local upper;
+  upper = "$(echo "${level}" | awk '{print toupper($0)}')";
   local debug_level="${DEBUG:-0}";
 
   shift 1;
 
-  local line="${@}";
+  local line="${*}";
 
   # RFC 5424
   #
@@ -85,7 +86,8 @@ function log() {
     fi;
 
     if [ "${json}" -eq 1 ]; then
-      local json_line="$(printf '{"timestamp":"%s","level":"%s","message":"%s"}' "${date_s}" "${level}" "${line}")";
+      local json_line;
+      json_line="$(printf '{"timestamp":"%s","level":"%s","message":"%s"}' "${date_s}" "${level}" "${line}")";
       echo -e "${json_line}" >> "${json_path}" \
         || _log_exception "echo -e \"${json_line}\" >> \"${json_path}\"";
     fi;
