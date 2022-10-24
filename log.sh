@@ -33,7 +33,7 @@ function log() {
 
   local level="${1}";
   local upper;
-  upper = "$(echo "${level}" | awk '{print toupper($0)}')";
+  upper="$(echo "${level}" | awk '{print toupper($0)}')";
   local debug_level="${DEBUG:-0}";
 
   shift 1;
