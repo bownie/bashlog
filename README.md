@@ -208,3 +208,16 @@ followed by interactive tests which test the debug shell mechanisms.
 
 User input is required, following instructional prompts in order to
 properly validate the functionality.
+
+## Testing for Mac
+
+Added a mac-friendly test script without sudo for safe testing purposes:
+
+$ bash mac_test.sh
+
+## Testing on Ubuntu via Docker
+
+There's an ubuntu_test.sh script and a supplied Dockerfile for building a test image:
+
+$ docker build -t ubuntubashlog .
+$ docker run ubuntubashlog
