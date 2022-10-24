@@ -48,7 +48,6 @@ declare random_string;
 declare stdout;
 declare fileout;
 declare jsonout;
-declare syslogout;
 
 declare BASHLOG_FILE=1;
 declare BASHLOG_JSON=1;
@@ -73,7 +72,6 @@ DEBUG=0;
 stdout="$(log 'info' "${random_string}")";
 fileout="$(tail -n1 ${0}.log)";
 jsonout="$(tail -n1 ${0}.log.json)";
-#syslogout="$(tail -n1 /var/log/system.log)";
 
 grep -q -E $'^\033\[32m[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} \[INFO\] '"${random_string}"$'\033\[0m$' <<<"${stdout}" \
   && result ok 'info -> stdout' \
@@ -109,7 +107,6 @@ DEBUG=0;
 stdout="$(log 'warn' "${random_string}")";
 fileout="$(tail -n1 ${0}.log)";
 jsonout="$(tail -n1 ${0}.log.json)";
-#syslogout="$(tail -n1 /var/log/system.log)";
 
 grep -q -E $'^\033\[33m[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} \[WARN\] '"${random_string}"$'\033\[0m$' <<<"${stdout}" \
   && result ok 'warn -> stdout' \
@@ -144,7 +141,6 @@ DEBUG=0;
 stderr="$(log 'error' "${random_string}" 2>&1 1>/dev/null)";
 fileout="$(tail -n1 ${0}.log)";
 jsonout="$(tail -n1 ${0}.log.json)";
-#syslogout="$(tail -n1 /var/log/syslog)";
 
 grep -q -E $'^\033\[31m[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} \[ERROR\] '"${random_string}"$'\033\[0m$' <<<"${stderr}" \
   && result ok 'error -> stderr' \
@@ -183,7 +179,6 @@ touch "${0}.log.json";
 stdout="$(log 'debug' "${random_string}")";
 fileout="$(tail -n1 ${0}.log)";
 jsonout="$(tail -n1 ${0}.log.json)";
-#syslogout="$(tail -n1 /var/log/debug)";
 
 grep -q -E $'^\033\[34m[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} \[DEBUG\] '"${random_string}"$'\033\[0m$' <<<"${stdout}" \
   && result fail 'debug -> stdout' \
@@ -218,7 +213,6 @@ DEBUG=1;
 stdout="$(log 'debug' "${random_string}")";
 fileout="$(tail -n1 ${0}.log)";
 jsonout="$(tail -n1 ${0}.log.json)";
-#syslogout="$(tail -n1 /var/log/debug)";
 
 grep -q -E $'^\033\[34m[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} \[DEBUG\] '"${random_string}"$'\033\[0m$' <<<"${stdout}" \
   && result ok 'debug -> stdout' \
@@ -253,7 +247,6 @@ DEBUG=0;
 stderr="$(log 'snooch' "${random_string}" 2>&1 1>/dev/null)";
 fileout="$(tail -n1 ${0}.log)";
 jsonout="$(tail -n1 ${0}.log.json)";
-#syslogout="$(tail -n1 /var/log/syslog)";
 
 grep -q -E $'^\033\[31m[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} \[ERROR\] Undefined log level trying to log: '"${random_string}"$'\033\[0m$' <<<"${stderr}" \
   && result ok 'snooch -> stderr' \
@@ -288,7 +281,6 @@ DEBUG=1;
 stderr="$(echo | log 'snooch' "${random_string}" 2>&1 1>/dev/null)";
 fileout="$(tail -n1 ${0}.log)";
 jsonout="$(tail -n1 ${0}.log.json)";
-#syslogout="$(tail -n1 /var/log/syslog)";
 
 grep -q -E $'^\033\[31m[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} \[ERROR\] Undefined log level trying to log: '"${random_string}"$'\033\[0m$' <<<"${stderr}" \
   && result ok 'snooch -> stderr' \

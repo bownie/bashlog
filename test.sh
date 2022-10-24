@@ -44,7 +44,7 @@ declare BASHLOG_FILE=1;
 declare BASHLOG_JSON=1;
 declare BASHLOG_SYSLOG=1;
 
-random_string = ="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)";
+random_string="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)";
 
 ##
 # INFO
