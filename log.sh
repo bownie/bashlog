@@ -14,9 +14,12 @@ function _log_exception() {
 
 function log() {
   local date_format="${BASHLOG_DATE_FORMAT:-+%F %T}";
-  local date="$(date "${date_format}")";
-  local date_s="$(date "+%s")";
+  local date;
+  local date_s;
 
+  date="$(date "${date_format}")";
+  date_s="$(date "+%s")";
+  
   local file="${BASHLOG_FILE:-0}";
   local file_path="${BASHLOG_FILE_PATH:-/tmp/$(basename "${0}").log}";
 
