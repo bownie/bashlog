@@ -447,10 +447,10 @@ if [ "${interactive}" -eq 1 ]; then
 
   echo "Testing: Debug Interaction, DEBUG=1";
 
-  BASHLOG_FILE=0;
-  BASHLOG_JSON=0;
-  BASHLOG_SYSLOG=0;
-  DEBUG=1;
+  export BASHLOG_FILE=0;
+  export BASHLOG_JSON=0;
+  export BASHLOG_SYSLOG=0;
+  export DEBUG=1;
 
   echo -e "\n\t\033[32mLogging a normal successful debug message to stdout\033[0m";
   log 'debug' 'A normal successful debug message';
