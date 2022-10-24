@@ -1,8 +1,7 @@
-FROM slackware/base
+FROM ubuntu:latest
 
-#RUN apk add --no-cache --upgrade bash
-
-COPY log.sh /log.sh
-COPY test.sh /test.sh
-RUN chmod +x /log.sh /test.sh
-CMD ["alias sudo=''; /test.sh"]
+WORKDIR /tmp
+COPY log.sh log.sh
+COPY ubuntu_test.sh ubuntu_test.sh
+CMD chmod +x log.sh ubuntu_test.sh
+CMD /tmp/ubuntu_test.sh && echo "Returns: $?"
