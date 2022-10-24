@@ -1,3 +1,5 @@
+[![Shellcheck](https://github.com/bownie/bashlog/actions/workflows/ci.yml/badge.svg)](https://github.com/bownie/bashlog/actions/workflows/ci.yml)
+
 # bashlog
 
 A simple but powerful logging library for bash
