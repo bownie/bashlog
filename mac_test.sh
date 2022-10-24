@@ -21,7 +21,7 @@ declare interactive="${TEST_INTERACTIVE:-0}";
 function result() {
   local level="${1}";
   shift;
-  local line="${@}"; 
+  local line="${*}"; 
 
   case "${level}" in
     ok)
@@ -44,7 +44,7 @@ rm -f "/tmp/${0}.log.json";
 
 source log.sh;
 
-declare random_string="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)";
+declare random_string;
 declare stdout;
 declare fileout;
 declare jsonout;
@@ -53,6 +53,8 @@ declare syslogout;
 declare BASHLOG_FILE=1;
 declare BASHLOG_JSON=1;
 declare BASHLOG_SYSLOG=1;
+
+random_string="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)";
 
 ##
 # INFO
